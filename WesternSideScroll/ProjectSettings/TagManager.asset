@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Bandit
+  - Boom
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Bounce
+  - BulletHit
+  - Bullet
+  - ShootSaver
+  - HalfWall
+  - Explosive
+  - Player
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Clouds
+    uniqueID: 229047471
+    locked: 0
+  - name: BackGround
+    uniqueID: 437981319
+    locked: 0
+  - name: Objects
+    uniqueID: 3094787137
+    locked: 0
+  - name: Tnt
+    uniqueID: 3411248569
+    locked: 0
+  - name: GunArm
+    uniqueID: 2525026059
+    locked: 0
+  - name: Entities
+    uniqueID: 1537940001
+    locked: 0
+  - name: ForeGround
+    uniqueID: 2407633565
+    locked: 0
