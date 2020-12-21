@@ -21,13 +21,14 @@ public class SharpSeePlayer : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(EyePoint.position, transform.TransformDirection(Vector2.right), 6.5f);//, ~ShootSaver
         Debug.DrawRay(EyePoint.position, transform.TransformDirection(Vector2.right) * 6.5f, Color.red);
         
-        if(hit.collider.name == "Player")
+        if(hit.collider.tag == "Player")
         {
             SharpShooterCrtl.canShoot = true;
         }
         else
         {
             SharpShooterCrtl.canShoot = false;
+            SharpShooterCrtl.timer = SharpShooterCrtl.startTimer;
         }
     }
 

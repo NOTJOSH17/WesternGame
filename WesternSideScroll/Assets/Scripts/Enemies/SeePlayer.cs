@@ -22,7 +22,7 @@ public class SeePlayer : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(EyePoint.position, transform.TransformDirection(Vector2.right), 6.5f);//, ~ShootSaver
         Debug.DrawRay(EyePoint.position, transform.TransformDirection(Vector2.right) * 6.5f, Color.red);
         
-        if(hit.collider.name == "Player")
+        if(hit.collider.tag == "Player")
         {
             banditControl.canShoot = true;
         }

@@ -44,7 +44,7 @@ public class Bullet : MonoBehaviour
     {
         
         
-        if (other.collider.gameObject.layer == LayerMask.NameToLayer("Bounce"))
+        if (other.collider.gameObject.layer == LayerMask.NameToLayer("Bounce") || other.collider.gameObject.layer == LayerMask.NameToLayer("Crate"))
         {
             ricochet.Play();
             var speed = lastVelocity.magnitude;
@@ -57,10 +57,10 @@ public class Bullet : MonoBehaviour
             SummonHitEffect();
 
         }
-        
         else if (other.collider.gameObject.layer == LayerMask.NameToLayer("BulletHit"))
         {
-           Destroy(gameObject);
+            SummonHitEffect();
+            Destroy(gameObject);
         }
         else
         {

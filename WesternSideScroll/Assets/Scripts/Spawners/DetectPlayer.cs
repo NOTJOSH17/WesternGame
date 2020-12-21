@@ -27,7 +27,7 @@ public class DetectPlayer : MonoBehaviour
 
         if(canSpawn == true)
         {
-            if(hit.collider.name == "Player")
+            if(hit.collider.tag == "Player")
             {
                 spawner.spawnEnemy = true;
             }  

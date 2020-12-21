@@ -5,6 +5,8 @@ using UnityEngine;
 public class CrateHealth : MonoBehaviour
 {
     public int health;
+    public GameObject healthDrop;
+    public Transform dropPoint;
     void Start()
     {
         //health = 1;
@@ -14,24 +16,29 @@ public class CrateHealth : MonoBehaviour
     {
         if(health <= 0)
         {
+            SpawnHealth();
             Destroy(gameObject);
         }
     }
 
-    void OnCollisionEnter2D(Collision2D other) 
+    void OnTriggerStay2D(Collider2D other) 
     {
         
-        if (other.collider.gameObject.layer == LayerMask.NameToLayer("Explosive"))
+        if(other.gameObject.layer == LayerMask.NameToLayer("Explosive"))
         {
             health -= 10;
         }
 
-        //if (other.collider.gameObject.layer == LayerMask.NameToLayer("Bullet"))
-        //{
-            //health -= 1;
-        //}
-        
-    
+        if (other.gameObject.layer == LayerMask.NameToLayer("Bullet"))
+        {
+            health -= 1;
+            Destroy(other.gameObject);
+        }
+    }
+
+    void SpawnHealth()
+    {
+        Instantiate(healthDrop, dropPoint.position, dropPoint.rotation);
     }
 
     

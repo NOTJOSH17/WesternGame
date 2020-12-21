@@ -19,11 +19,11 @@ TagManager:
   - BulletHit
   - Bullet
   - ShootSaver
-  - HalfWall
+  - Crate
   - Explosive
   - Player
-  - 
-  - 
+  - Health
+  - Ammo
   - 
   - 
   - 

@@ -347,11 +347,11 @@ MonoBehaviour:
   Blood: {fileID: 7482937376676614518, guid: 7d971d289bfd8ad4f8deefbb9a16c5b1, type: 3}
   bleedingPoint: {fileID: 3796358264539494831}
   Flash: {fileID: 7154194732084276959}
-  sharpHealth: 3
+  sharpHealth: 2
   startShooting: 1
   canShoot: 0
-  timer: 0.35
-  startTimer: 0.35
+  timer: 0.45
+  startTimer: 0.45
   arm: {fileID: 3796358265119081560}
 --- !u!50 &3796358265002969867
 Rigidbody2D:

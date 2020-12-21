@@ -10,13 +10,8 @@ public class PlayerMove : MonoBehaviour
     public GameObject bullet;
     public Transform firePoint;
     bool facingRight = true;
-    public static int bulletCount;
-    public Text bulletText;
-    public Text healthText;
-    public Text totalHealthText;
     public Transform gunTransform;
-    public int health;
-    public int totalHealth;
+    public PlayerCntrl playerController;
     bool canShoot;
     public AudioSource gunSounds;
     public AudioSource emptyGun;
@@ -30,24 +25,20 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         rigi = GetComponent<Rigidbody2D>();
-        bulletCount = 6;
         canShoot = true;
-        totalHealthText.text = "/" + totalHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
         faceMouse();
-        bulletText.text = "" + bulletCount; 
-        healthText.text = "" + health;
 
         if(canShoot == true)
         {
             if(Input.GetMouseButtonDown(0))//this just lets the player shoot.
                 {
                     Shoot();
-                    bulletCount -= 1; 
+                    playerController.bulletCount -= 1; 
                     gunSounds.Play();
                 }
         }
@@ -59,27 +50,23 @@ public class PlayerMove : MonoBehaviour
                 }
         }
         //bullet count for player. counts to see how many shots that player has taken.
-        if(bulletCount <= 0)
+        if(playerController.bulletCount <= 0)
         {
             //emptyGun.Play();
             canShoot = false;
 
 
-            if(Input.GetKey(KeyCode.R))
-            {
-                bulletCount = 6;
+            //if(Input.GetKey(KeyCode.R))
+            //{
+            //    playerController.bulletCount = playerController.maxBulletCount;
                 
-            }
+            //}
         }
-        if(bulletCount >= 1)//allows the player to shoot when they reload;
+        if(playerController.bulletCount >= 1)//allows the player to shoot when they reload;
         {
             canShoot = true;
         }
-        if(health <= 0)//the players health counter.
-        {
-            Dead();
-        }
-        
+
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);//tracks the players mouse to see if its on the left or right of the player.
 
         if(mousePos.x < transform.position.x && facingRight)//flips the player right
@@ -98,16 +85,25 @@ public class PlayerMove : MonoBehaviour
     {
         if (other.collider.gameObject.layer == LayerMask.NameToLayer("Bullet"))//sees if the player is shot, takes damage
         {
-            health -= 1;
+            playerController.health -= 1;
             bleed();
             Hit.Play();
         }
         if (other.collider.gameObject.layer == LayerMask.NameToLayer("Explosive"))//player go boom
         {
-            health -= 5;
+            playerController.health -= 5;
             bleed();
             Hit.Play();
         }
+        if (other.collider.gameObject.layer == LayerMask.NameToLayer("Ammo"))//player go boom
+        {
+            playerController.bulletCount += 6;
+            if(playerController.bulletCount >= playerController.maxBulletCount)
+            {
+                playerController.bulletCount = playerController.maxBulletCount;
+            }
+        }
+
 
     }
 
@@ -138,9 +134,4 @@ public class PlayerMove : MonoBehaviour
         Instantiate(Blood, bleedingPoint.position, bleedingPoint.rotation);
     }
 
-    void Dead()//get fucking owned nerd
-    {
-        gameCtrl.PlayerDead();
-        Destroy(gameObject);
-    }
 }
