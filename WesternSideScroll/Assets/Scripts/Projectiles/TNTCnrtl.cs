@@ -14,12 +14,10 @@ public class TNTCnrtl : MonoBehaviour
             
             Explosion();
         }
-        if (other.collider.gameObject.layer == LayerMask.NameToLayer("Explosive"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Explosive"))
         {
-            
             Explosion();
         }
-
     }
 
     public void Explosion()

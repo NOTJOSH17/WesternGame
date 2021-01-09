@@ -30,6 +30,8 @@ public class Crouch : MonoBehaviour
         canShoot = true;
     }
 
+    //test this out
+
     // Update is called once per frame
     void Update()
     {
@@ -87,12 +89,6 @@ public class Crouch : MonoBehaviour
         if (other.collider.gameObject.layer == LayerMask.NameToLayer("Bullet"))//sees if the player is shot, takes damage
         {
             playerController.health -= 1;
-            bleed();
-            Hit.Play();
-        }
-        if (other.collider.gameObject.layer == LayerMask.NameToLayer("Explosive"))//player go boom
-        {
-            playerController.health -= 5;
             bleed();
             Hit.Play();
         }

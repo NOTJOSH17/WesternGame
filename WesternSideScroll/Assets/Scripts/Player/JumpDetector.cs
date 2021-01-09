@@ -9,6 +9,7 @@ public class JumpDetector : MonoBehaviour
     public BoxCollider2D jumpDetector;
     public PlayerCntrl playerController;
     public LayerMask nonJump;
+    public LayerMask ladderMask;
     public bool ifGrounded;
 
     // Start is called before the first frame update
@@ -28,6 +29,11 @@ public class JumpDetector : MonoBehaviour
         {
             playerController.canJump = false;
         }
+
+        if(isClimb())
+        {
+            playerController.canJump = false;
+        }
     }
 
     private bool isGrounded()
@@ -35,4 +41,11 @@ public class JumpDetector : MonoBehaviour
         RaycastHit2D hit = Physics2D.BoxCast(jumpDetector.bounds.center, jumpDetector.bounds.size, 0f, Vector2.down, .1f, nonJump, ~player);
         return hit.collider != null;
     }
+
+    private bool isClimb()
+    {
+        RaycastHit2D hit = Physics2D.BoxCast(jumpDetector.bounds.center, jumpDetector.bounds.size, 0f, Vector2.down, .1f, ladderMask, ~player);
+        return hit.collider != null;
+    }
+
 }

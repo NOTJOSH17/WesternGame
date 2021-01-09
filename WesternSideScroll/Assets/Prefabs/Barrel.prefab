@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2645859067376551437}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: DropPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 2645859067442481927}
   - component: {fileID: 2645859067442481923}
   - component: {fileID: 2645859067442481925}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1200180159
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ac800259b2484004885e6a36dc6f974a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -130,6 +130,13 @@ MonoBehaviour:
   healthDrop: {fileID: 2670850550927707509, guid: ce8390ef30b112a43a0c86fb6a0120bf,
     type: 3}
   dropPoint: {fileID: 2645859067376551437}
+  boxCollider: {fileID: 2645859067442481925}
+  explosiveLayer:
+    serializedVersion: 2
+    m_Bits: 8192
+  bulletLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!61 &2645859067442481925
 BoxCollider2D:
   m_ObjectHideFlags: 0

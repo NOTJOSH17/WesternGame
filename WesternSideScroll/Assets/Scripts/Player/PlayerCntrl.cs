@@ -29,6 +29,8 @@ public class PlayerCntrl : MonoBehaviour
     public Transform crouchPos;
     public bool needReload;
     public bool canReload;
+    public float gravity;
+    public float tempGravity = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +38,7 @@ public class PlayerCntrl : MonoBehaviour
         bulletCount = maxBulletCount;
         maxBulletCount = 6;
         totalHealthText.text = "/" + totalHealth;
+        gravity = this.rigi.gravityScale;
     }
 
     private void FixedUpdate() 
@@ -90,6 +93,20 @@ public class PlayerCntrl : MonoBehaviour
             playerCrouch.SetActive(false);
             isCrouching = false;
         }
+
+        if(Input.GetMouseButtonDown(0))//this just lets the player shoot.
+        {
+            if(PlayerMove.GetComponent<PlayerMove>().canShoot == true)
+            {
+                Flash.Play();
+            }
+            else
+            {
+                Flash.Stop();
+            }
+            
+        }
+
         
 
 
@@ -135,6 +152,24 @@ public class PlayerCntrl : MonoBehaviour
         {
             Dead();
         }
+    }
+
+    public void Climb()
+    {
+        this.rigi.gravityScale = tempGravity;
+        if(Input.GetKey(KeyCode.Space))
+        {
+            rigi.velocity = Vector2.up * 4;
+        }
+        else
+        {
+            rigi.velocity = Vector2.down * 2;
+        }
+    }
+    
+    public void ExitClimb()
+    {
+        this.rigi.gravityScale = gravity;
     }
 
     void bleed()//bleeds

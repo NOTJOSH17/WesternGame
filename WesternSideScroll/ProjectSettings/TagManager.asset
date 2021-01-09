@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Bandit
   - Boom
+  - PlayerMain
+  - TnTSpawner
   layers:
   - Default
   - TransparentFX
@@ -24,9 +26,9 @@ TagManager:
   - Player
   - Health
   - Ammo
-  - 
-  - 
-  - 
+  - Ladder
+  - Enemy
+  - Boss
   - 
   - 
   - 
@@ -45,6 +47,9 @@ TagManager:
     locked: 0
   - name: Clouds
     uniqueID: 229047471
+    locked: 0
+  - name: Ladder
+    uniqueID: 2085127031
     locked: 0
   - name: BackGround
     uniqueID: 437981319

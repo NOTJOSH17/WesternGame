@@ -12,7 +12,7 @@ public class PlayerMove : MonoBehaviour
     bool facingRight = true;
     public Transform gunTransform;
     public PlayerCntrl playerController;
-    bool canShoot;
+    public bool canShoot;
     public AudioSource gunSounds;
     public AudioSource emptyGun;
     public AudioSource Hit;
@@ -89,12 +89,6 @@ public class PlayerMove : MonoBehaviour
             bleed();
             Hit.Play();
         }
-        if (other.collider.gameObject.layer == LayerMask.NameToLayer("Explosive"))//player go boom
-        {
-            playerController.health -= 5;
-            bleed();
-            Hit.Play();
-        }
         if (other.collider.gameObject.layer == LayerMask.NameToLayer("Ammo"))//player go boom
         {
             playerController.bulletCount += 6;
@@ -125,6 +119,7 @@ public class PlayerMove : MonoBehaviour
 
     void Shoot()//main shoot function
     {
+
         Flash.Play();
         Instantiate(bullet, firePoint.position, firePoint.rotation);
     }

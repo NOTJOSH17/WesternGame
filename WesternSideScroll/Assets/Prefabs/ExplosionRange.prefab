@@ -63,6 +63,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionEffect: {fileID: 2327057782614181119, guid: 0398f1803768f5940a2ce0cdf9fbcd06,
     type: 3}
+  player: {fileID: 0}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 16384
+  explosiveLayer:
+    serializedVersion: 2
+    m_Bits: 4096
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 519936
+  playerControl: {fileID: 0}
+  blastRange: {fileID: 5592201128195953304}
+  DMG: 2
+  canExplode: []
 --- !u!1 &7449609227441714627
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,7 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4407766076067313952}
   - component: {fileID: 7220683844264470619}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: rumble
   m_TagString: Untagged
   m_Icon: {fileID: 0}

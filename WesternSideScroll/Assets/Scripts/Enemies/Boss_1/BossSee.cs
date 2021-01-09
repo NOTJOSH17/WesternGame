@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SharpSeePlayer : MonoBehaviour
-{ 
+public class BossSee : MonoBehaviour
+{
     public bool isRight;
     public GameObject player;
     public Transform EyePoint;
     public LayerMask ShootSaver;
-    public SharpCntrl SharpShooterCrtl;
+    public BossCntrl BossCntrl;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,17 +19,17 @@ public class SharpSeePlayer : MonoBehaviour
     void Update()
     {
         RotateTowards(player.transform.position);
-        RaycastHit2D hit = Physics2D.Raycast(EyePoint.position, transform.TransformDirection(Vector2.right), 6.5f);//, ~ShootSaver
+        RaycastHit2D hit = Physics2D.Raycast(EyePoint.position, transform.TransformDirection(Vector2.right), 6.5f, ~ShootSaver);
         Debug.DrawRay(EyePoint.position, transform.TransformDirection(Vector2.right) * 6.5f, Color.red);
         
         if(hit.collider.tag == "Player")
         {
-            SharpShooterCrtl.canShoot = true;
+            BossCntrl.canShoot = true;
         }
         else
         {
-            SharpShooterCrtl.canShoot = false;
-            SharpShooterCrtl.timer = SharpShooterCrtl.startTimer;
+            BossCntrl.canShoot = false;
+            BossCntrl.timer = BossCntrl.startTimer;
         }
     }
 
