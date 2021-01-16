@@ -13,6 +13,7 @@ public class BossCntrl : MonoBehaviour
     public Transform bleedingPoint;
     public ParticleSystem Flash;
     public int bossHealth;
+    public int maxBossHealth;
     public bool startShooting;
     public bool canShoot;
     public float timer;
@@ -21,13 +22,16 @@ public class BossCntrl : MonoBehaviour
     public TNTSpawner spawnTnT;
     public int shootCounter;
     public int maxShootCounter;
+    public HealthSlider healthBar;
+    public int hitCounter;
 
     // Start is called before the first frame update
     void Start()
     {
         timer = startTimer;
         player = GameObject.FindGameObjectWithTag("Player");
-        
+        bossHealth = maxBossHealth;
+        healthBar.SetMaxHealth(maxBossHealth);
         // canSeePlayer = false;
     }
 
@@ -87,11 +91,14 @@ public class BossCntrl : MonoBehaviour
         if (other.collider.gameObject.layer == LayerMask.NameToLayer("Bullet"))
         { 
             bossHealth -= 1;
+            hitCounter += 1;
+            healthBar.SetHealth(bossHealth);
             bleed();
         }
         if (other.collider.gameObject.layer == LayerMask.NameToLayer("Explosive"))
         {
             bossHealth -= 5;
+            healthBar.SetHealth(bossHealth);
             bleed();
         }
     }
