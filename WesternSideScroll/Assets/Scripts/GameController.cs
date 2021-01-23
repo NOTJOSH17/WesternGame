@@ -13,7 +13,8 @@ public class GameController : MonoBehaviour
     public GameObject Player;
     public AudioSource levelMusic;
     public AudioSource gameOverMusic;
-    
+    public AudioSource bossMusic;
+    public bool isBoss;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +38,10 @@ public class GameController : MonoBehaviour
         Player.SetActive(false);
         PauseUI.SetActive(true);
         Time.timeScale = 0;
+        if(isBoss)
+        {
+            bossMusic.Pause();
+        }
     }
 
     public void ResumeGame()
@@ -45,6 +50,10 @@ public class GameController : MonoBehaviour
         Player.SetActive(true);
         PauseUI.SetActive(false);
         Time.timeScale = 1;
+        if(isBoss)
+        {
+            bossMusic.Play();
+        }
     }
 
     public void MainMenu()
@@ -60,6 +69,11 @@ public class GameController : MonoBehaviour
         gameOverMusic.Play();
         levelMusic.Stop();
         Time.timeScale = 0;
+        if(isBoss)
+        {
+            bossMusic.Stop();
+            
+        }
     }
 
     public void RestartLevel()

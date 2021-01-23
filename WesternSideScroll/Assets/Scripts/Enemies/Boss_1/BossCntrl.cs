@@ -23,7 +23,9 @@ public class BossCntrl : MonoBehaviour
     public int shootCounter;
     public int maxShootCounter;
     public HealthSlider healthBar;
+    public GameObject healthBarObject;
     public int hitCounter;
+    public GameObject EndCrate;
 
     // Start is called before the first frame update
     void Start()
@@ -80,8 +82,8 @@ public class BossCntrl : MonoBehaviour
     IEnumerator death()
     { 
         yield return new WaitForSeconds(.01f);
-        
-        
+        EndCrate.SetActive(false);
+        healthBarObject.SetActive(false);
         Destroy(gameObject);
     }
 

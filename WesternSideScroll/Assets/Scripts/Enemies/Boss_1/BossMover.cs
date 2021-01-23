@@ -6,13 +6,17 @@ public class BossMover : MonoBehaviour
 {
     public GameObject player;
     public GameObject Enemy;
+    public GameObject Bandit;
     public BossCntrl bossController;
     public Vector3 enemyStartPos;
-    public Transform movePointLeft;
-    public Transform movePointRight;
+    public Transform moveUpPointLeft;
+    public Transform moveUpPointRight;
+    public Transform moveDownPointLeft;
+    public Transform moveDownPointRight;
     public Transform upperPoint;
     public Transform lowerPoint;
-    public Transform BanditSpawner;
+    public Transform banditSpawnerLeft;
+    public Transform banditSpawnerRight;
     public float moveTimer;
     public float maxMoveTimer;
     public bool moveUp;
@@ -26,14 +30,28 @@ public class BossMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if(player.transform.position.x < transform.position.x)
-        //{
-            //FlipLeft();
-        //}
-        //if(player.transform.position.x > transform.position.x)
-        //{
-            //FlipRight();
-        //}
+        if(moveUp == false)
+        {
+            if(player.transform.position.x < transform.position.x)
+            {
+                FlipLeftUp();
+            }
+            if(player.transform.position.x > transform.position.x)
+            {
+                FlipRightUp();
+            }    
+        }
+        if(moveUp == true)
+        {
+            if(player.transform.position.x < transform.position.x)
+            {
+                FlipLeftDown();
+            }
+            if(player.transform.position.x > transform.position.x)
+            {
+                FlipRightDown();
+            }    
+        }
 
         if(bossController.hitCounter >= 10) //eventually set hit count to an actual int!
         {
@@ -69,6 +87,7 @@ public class BossMover : MonoBehaviour
             Enemy.SetActive(true);
             moveTimer = maxMoveTimer;
             moveCount += 1;
+            BanditSpawer();
         }
     }
     void MoverUp()
@@ -85,16 +104,39 @@ public class BossMover : MonoBehaviour
         }
     }
 
-    void FlipLeft()
+    void FlipLeftUp()
     {
-        //Debug.Log("move left");
-        Enemy.transform.position = movePointLeft.position;
+        Enemy.transform.position = moveUpPointLeft.position;
     }
 
-    void FlipRight()
+    void FlipRightUp()
     {
-        //Debug.Log("move right");
-        Enemy.transform.position = movePointRight.position;
+        Enemy.transform.position = moveUpPointRight.position;
     }
     
+    void FlipLeftDown()
+    {
+        Enemy.transform.position = moveDownPointLeft.position;
+    }
+
+    void FlipRightDown()
+    {
+        Enemy.transform.position = moveDownPointRight.position;
+    }
+
+    void BanditSpawer()
+    {
+        RaycastHit2D leftHit = Physics2D.Raycast(banditSpawnerLeft.position, banditSpawnerLeft.TransformDirection(Vector2.down), .5f);
+        if(leftHit.collider.tag != "Bandit")
+        {
+            Instantiate(Bandit, banditSpawnerLeft.position, banditSpawnerLeft.rotation);
+        }
+        
+        RaycastHit2D rightHit = Physics2D.Raycast(banditSpawnerRight.position, banditSpawnerRight.TransformDirection(Vector2.down), .5f);
+        if(rightHit.collider.tag != "Bandit")
+        {
+            Instantiate(Bandit, banditSpawnerRight.position, banditSpawnerRight.rotation);
+        }
+       
+    }
 }

@@ -8,6 +8,7 @@ TagManager:
   - Boom
   - PlayerMain
   - TnTSpawner
+  - PickUp
   layers:
   - Default
   - TransparentFX
