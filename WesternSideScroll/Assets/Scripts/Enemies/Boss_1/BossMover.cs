@@ -53,7 +53,7 @@ public class BossMover : MonoBehaviour
             }    
         }
 
-        if(bossController.hitCounter >= 10) //eventually set hit count to an actual int!
+        if(bossController.hitCounter >= 10) //eventually set hit count to an actual int and not a set value here!
         {
             moveTimer -= 1 * Time.deltaTime;
             if(moveUp == false)

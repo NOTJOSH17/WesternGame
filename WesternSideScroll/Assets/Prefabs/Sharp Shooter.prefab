@@ -5631,7 +5631,7 @@ MonoBehaviour:
   EyePoint: {fileID: 4003009061756463023}
   ShootSaver:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 133120
   SharpShooterCrtl: {fileID: 3796358265002969864}
 --- !u!1 &9065946921609761483
 GameObject:

@@ -31,6 +31,7 @@ public class PlayerCntrl : MonoBehaviour
     public bool canReload;
     public float gravity;
     public float tempGravity = 0.0f;
+    public bool testBool;
     // Start is called before the first frame update
     void Start()
     {

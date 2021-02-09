@@ -9,6 +9,8 @@ TagManager:
   - PlayerMain
   - TnTSpawner
   - PickUp
+  - BossSpawnPoint
+  - SaveHolder
   layers:
   - Default
   - TransparentFX

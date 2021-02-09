@@ -100,6 +100,7 @@ public class BossCntrl : MonoBehaviour
         if (other.collider.gameObject.layer == LayerMask.NameToLayer("Explosive"))
         {
             bossHealth -= 5;
+            hitCounter += 10;
             healthBar.SetHealth(bossHealth);
             bleed();
         }

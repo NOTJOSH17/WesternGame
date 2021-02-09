@@ -353,8 +353,9 @@ MonoBehaviour:
   startShooting: 1
   canShoot: 0
   timer: 0
-  startTimer: 1.7
+  startTimer: 1
   arm: {fileID: 1249347690679475241}
+  BossStartPoint: {fileID: 0}
 --- !u!50 &1249347690797716359
 Rigidbody2D:
   serializedVersion: 4
@@ -501,7 +502,7 @@ MonoBehaviour:
   EyePoint: {fileID: 1329766031295840035}
   ShootSaver:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 133120
   banditControl: {fileID: 1249347690797716358}
 --- !u!1 &6352742965105232455
 GameObject:
@@ -851,6 +852,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6539696817248861285}
     m_Modifications:
+    - target: {fileID: 8854422911178961296, guid: 2ce44e1744cd23240b2afb6526b40083,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8854422911178961297, guid: 2ce44e1744cd23240b2afb6526b40083,
         type: 3}
       propertyPath: m_LocalPosition.x

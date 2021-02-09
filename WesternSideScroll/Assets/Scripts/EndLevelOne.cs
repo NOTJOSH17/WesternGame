@@ -12,7 +12,10 @@ public class EndLevelOne : MonoBehaviour
     public GameObject fade;
     public GameObject Credit;
     public AudioSource BossMusic;
-    void Start()
+    public LevelOneCheck levelChecker;
+    public GameObject Checkpoint;
+    public int addLevel;
+    void Start() 
     {
         
     }
@@ -29,6 +32,9 @@ public class EndLevelOne : MonoBehaviour
             fade.SetActive(true);
             Fader.Play("FadeOut");
             BossMusic.Stop();
+            Checkpoint.SetActive(false);
+            levelChecker.checkpointSet = false;
+            CheckSaveSystem.SaveCheckpoint(levelChecker);
             StartCoroutine(ExitButtons()); 
         }
     }
@@ -36,6 +42,19 @@ public class EndLevelOne : MonoBehaviour
     IEnumerator ExitButtons()
     {
         yield return new WaitForSeconds(3.4f);
+
+        if(PlayerPrefs.GetInt("LevelCount") >= 1)
+        {
+            PlayerPrefs.SetInt("LevelCount", PlayerPrefs.GetInt("LevelCount"));
+        }
+        else
+        {
+            addLevel = PlayerPrefs.GetInt("LevelCount");
+            addLevel = 1;
+            PlayerPrefs.SetInt("LevelCount", addLevel);
+        }
+        
+        PlayerPrefs.Save();
         Credit.SetActive(true);
     }
 }

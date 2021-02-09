@@ -11,14 +11,46 @@ public class GameController : MonoBehaviour
     public GameObject DeadUI;
     public GameObject PauseUI;
     public GameObject Player;
+    public GameObject MainPlayerHolder;
+    public PlayerCntrl playerScript;
+    public Transform spawnPoint;
+    public Transform StartPoint;
+    public LevelOneCheck levelChecker;
     public AudioSource levelMusic;
     public AudioSource gameOverMusic;
     public AudioSource bossMusic;
     public bool isBoss;
+    public GameObject bandits;
+    public EnemySpawner doorSpawner;
 
     // Start is called before the first frame update
     void Start()
     {
+        if(PlayerPrefs.GetInt("DeleteCount") >= 1)
+        {
+            //Debug.Log("Delete Save");
+            levelChecker.checkpointSet = false;
+            CheckSaveSystem.SaveCheckpoint(levelChecker);
+            PlayerPrefs.SetInt("DeleteCount", 0);
+        }
+
+        LvlOneData Lvldata = CheckSaveSystem.LoadLevelCheckpoint();
+
+        levelChecker.checkpointSet = Lvldata.checkpointBool;
+
+        if(levelChecker.checkpointSet == true)
+        {
+            //Debug.Log("Checkpoint");
+            MainPlayerHolder.transform.position = spawnPoint.position;
+            bandits.SetActive(false);
+            doorSpawner.enemyCount = doorSpawner.maxEnemyCount;
+        }
+
+        else
+        {
+            return;
+        }
+
         
     }
 
@@ -29,6 +61,27 @@ public class GameController : MonoBehaviour
         {
             PauseGame();
         }
+
+        
+    }
+
+    public void Save()
+    {
+        //SaveSystem.SavePlayer(playerScript);
+        CheckSaveSystem.SaveCheckpoint(levelChecker);
+    }
+
+    public void Load()
+    {
+        //GameData data = SaveSystem.LoadPlayer();
+
+        //playerScript.bulletCount = data.bullets;
+        //playerScript.health = data.health;
+        //playerScript.testBool = data.testBool;
+
+        LvlOneData Lvldata = CheckSaveSystem.LoadLevelCheckpoint();
+
+        levelChecker.checkpointSet = Lvldata.checkpointBool;
     }
 
     
@@ -71,19 +124,36 @@ public class GameController : MonoBehaviour
         Time.timeScale = 0;
         if(isBoss)
         {
-            bossMusic.Stop();
-            
+            bossMusic.Stop();  
         }
     }
 
     public void RestartLevel()
     {
         SceneManager.LoadScene(1);
+
+        LvlOneData Lvldata = CheckSaveSystem.LoadLevelCheckpoint();
+
+        levelChecker.checkpointSet = Lvldata.checkpointBool;
+
         Time.timeScale = 1;
     }
 
     public void Exit()
     {
         Application.Quit();
+    }
+
+    public void DeleteCheckpoint()
+    {
+        SceneManager.LoadScene(1);
+        Time.timeScale = 1;
+        playerScript.transform.position = StartPoint.position;
+        levelChecker.checkpointSet = false;
+        CheckSaveSystem.SaveCheckpoint(levelChecker);
+
+        ResumeGame();
+
+        
     }
 }

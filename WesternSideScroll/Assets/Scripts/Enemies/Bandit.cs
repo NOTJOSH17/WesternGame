@@ -18,6 +18,7 @@ public class Bandit : MonoBehaviour
     public float timer;
     public float startTimer;
     public GunFacePlayer arm;
+    public GameObject BossStartPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class Bandit : MonoBehaviour
         timer = startTimer;
         bandHealth = 1;
         player = GameObject.FindGameObjectWithTag("Player");
+        BossStartPoint = GameObject.FindGameObjectWithTag("BossSpawnPoint");
         // canSeePlayer = false;
     }
 
@@ -58,6 +60,11 @@ public class Bandit : MonoBehaviour
         if(player.transform.position.x > transform.position.x)
         {
             FlipRight();
+        }
+
+        if(player.transform.position.x >= BossStartPoint.transform.position.x)
+        {
+            Destroy(gameObject);
         }
     }
 

@@ -13,6 +13,7 @@ public class BossSpawnPoint : MonoBehaviour
     public AudioSource levelMusic;
     public GameObject bossMusic;
     public GameController gameCntl;
+    public GameObject Checkpoint;
     void Update()
     {
         if(player.transform.position.x > transform.position.x)
@@ -25,6 +26,7 @@ public class BossSpawnPoint : MonoBehaviour
             bossMusic.SetActive(true);
             WorldStuff.SetActive(false);
             gameCntl.isBoss = true;
+            Checkpoint.SetActive(false);
         }
         else
         {
