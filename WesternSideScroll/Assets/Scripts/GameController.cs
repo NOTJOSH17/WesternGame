@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
     public Transform spawnPoint;
     public Transform StartPoint;
     public LevelOneCheck levelChecker;
+    public LevelTwoCheck levelTwoChecker;
     public AudioSource levelMusic;
     public AudioSource gameOverMusic;
     public AudioSource bossMusic;
@@ -30,28 +31,55 @@ public class GameController : MonoBehaviour
         {
             //Debug.Log("Delete Save");
             levelChecker.checkpointSet = false;
+            levelTwoChecker.checkpointSet = false;
             CheckSaveSystem.SaveCheckpoint(levelChecker);
+            CheckSaveSystem.SaveCheckpointTwo(levelTwoChecker);
             PlayerPrefs.SetInt("DeleteCount", 0);
         }
 
-        LvlOneData Lvldata = CheckSaveSystem.LoadLevelCheckpoint();
-
-        levelChecker.checkpointSet = Lvldata.checkpointBool;
-
-        if(levelChecker.checkpointSet == true)
-        {
-            //Debug.Log("Checkpoint");
-            MainPlayerHolder.transform.position = spawnPoint.position;
-            bandits.SetActive(false);
-            doorSpawner.enemyCount = doorSpawner.maxEnemyCount;
-        }
-
-        else
-        {
-            return;
-        }
-
         
+
+        if(SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            //Debug.Log("Level One");
+
+            LvlOneData Lvldata = CheckSaveSystem.LoadLevelCheckpoint();
+
+            levelChecker.checkpointSet = Lvldata.checkpointBool;
+
+            if(levelChecker.checkpointSet == true)
+            {
+                //Debug.Log("Checkpoint");
+                MainPlayerHolder.transform.position = spawnPoint.position;
+                bandits.SetActive(false);
+                doorSpawner.enemyCount = doorSpawner.maxEnemyCount;
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        if(SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            Debug.Log("Level Two");
+
+            LvlOneData LvldataTwo = CheckSaveSystem.LoadLevelCheckpointTwo();
+
+            levelTwoChecker.checkpointSet = LvldataTwo.checkpointBool;
+            
+
+            if(levelTwoChecker.checkpointSet == true)
+            {
+                //Debug.Log("Checkpoint");
+                MainPlayerHolder.transform.position = spawnPoint.position;
+            }
+            else
+            {
+                Debug.Log("No Checkpoint");
+                return;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -68,7 +96,7 @@ public class GameController : MonoBehaviour
     public void Save()
     {
         //SaveSystem.SavePlayer(playerScript);
-        CheckSaveSystem.SaveCheckpoint(levelChecker);
+        //CheckSaveSystem.SaveCheckpointTwo(levelTwoChecker);
     }
 
     public void Load()
@@ -79,9 +107,13 @@ public class GameController : MonoBehaviour
         //playerScript.health = data.health;
         //playerScript.testBool = data.testBool;
 
-        LvlOneData Lvldata = CheckSaveSystem.LoadLevelCheckpoint();
+        //LvlOneData Lvldata = CheckSaveSystem.LoadLevelCheckpoint();
 
-        levelChecker.checkpointSet = Lvldata.checkpointBool;
+        //levelChecker.checkpointSet = Lvldata.checkpointBool;
+
+        //LvlOneData LvldataTwo = CheckSaveSystem.LoadLevelCheckpointTwo();
+
+        //levelTwoChecker.checkpointSet = LvldataTwo.checkpointBool;
     }
 
     
@@ -128,7 +160,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void RestartLevel()
+    public void RestartLevelOne()
     {
         SceneManager.LoadScene(1);
 
@@ -139,12 +171,23 @@ public class GameController : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    public void RestartLevelTwo()
+    {
+        SceneManager.LoadScene(2);
+
+        LvlOneData LvldataTwo = CheckSaveSystem.LoadLevelCheckpointTwo();
+
+        levelTwoChecker.checkpointSet = LvldataTwo.checkpointBool;
+
+        Time.timeScale = 1;
+    }
+
     public void Exit()
     {
         Application.Quit();
     }
 
-    public void DeleteCheckpoint()
+    public void DeleteCheckpointOne()
     {
         SceneManager.LoadScene(1);
         Time.timeScale = 1;
@@ -152,8 +195,16 @@ public class GameController : MonoBehaviour
         levelChecker.checkpointSet = false;
         CheckSaveSystem.SaveCheckpoint(levelChecker);
 
-        ResumeGame();
+        ResumeGame();  
+    }
 
-        
+    public void DeleteCheckpointTwo()
+    {
+        levelTwoChecker.checkpointSet = false;
+        CheckSaveSystem.SaveCheckpointTwo(levelTwoChecker);
+        SceneManager.LoadScene(2);
+        Time.timeScale = 1;
+        playerScript.transform.position = StartPoint.position;
+        ResumeGame();  
     }
 }

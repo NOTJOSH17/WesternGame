@@ -7,8 +7,15 @@ public class LvlOneData
 {
     public bool checkpointBool;
 
+    public bool checkpointBoolTwo;
+
     public LvlOneData (LevelOneCheck checker)
     {
         checkpointBool = checker.checkpointSet;
+    }
+
+    public LvlOneData (LevelTwoCheck checkerTwo)
+    {
+        checkpointBoolTwo = checkerTwo.checkpointSet;
     }
 }

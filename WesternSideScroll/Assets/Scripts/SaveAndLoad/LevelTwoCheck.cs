@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelOneCheck : MonoBehaviour
+public class LevelTwoCheck : MonoBehaviour
 {
     public Transform checkpoint;
     public GameObject Player;
@@ -21,11 +21,12 @@ public class LevelOneCheck : MonoBehaviour
     {
         if(Player.transform.position.x >= checkpoint.position.x)
         {
+            checkpointSet = true;
+            CheckSaveSystem.SaveCheckpointTwo(this);
             FlagBase.SetActive(false);
             Flag.SetActive(true);
             CheckBool = true;
-            checkpointSet = true;
-            CheckSaveSystem.SaveCheckpoint(this);
+            
         }
 
         if(CheckBool == true)
@@ -39,5 +40,6 @@ public class LevelOneCheck : MonoBehaviour
     {
         yield return new WaitForSeconds(.1f);
         Flap.SetActive(true);
+
     }
 }
