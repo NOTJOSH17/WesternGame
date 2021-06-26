@@ -11,6 +11,8 @@ public class CrateHealth : MonoBehaviour
     public LayerMask explosiveLayer;
     public LayerMask bulletLayer;
     GameObject bullet;
+    public bool inRoom;
+    public GameObject Room;
     void Start()
     {
         //health = 1;
@@ -33,7 +35,7 @@ public class CrateHealth : MonoBehaviour
         {
             health -= 1;
         }
-        }
+    }
 
     private bool TntTouch()
     {
@@ -53,8 +55,16 @@ public class CrateHealth : MonoBehaviour
 
     void SpawnHealth()
     {
-        Instantiate(healthDrop, dropPoint.position, dropPoint.rotation);
-    }
 
+        if(inRoom)
+        {
+            GameObject healthBox = Instantiate(healthDrop, dropPoint.position, dropPoint.rotation);
+            healthBox.transform.parent = Room.transform;
+        }
+        else if (!inRoom)
+        {
+            Instantiate(healthDrop, dropPoint.position, dropPoint.rotation);
+        }
+    }
     
 }

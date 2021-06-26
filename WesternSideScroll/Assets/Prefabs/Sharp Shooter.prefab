@@ -196,7 +196,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1769941237
-  m_SortingLayer: 6
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f802bcfdcbd1c6c4ab027d1ff764d84e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -314,7 +314,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1537940001
-  m_SortingLayer: 7
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9f063d63222c4174cbf777a265969d85, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -353,6 +353,8 @@ MonoBehaviour:
   timer: 0.45
   startTimer: 0.45
   arm: {fileID: 3796358265119081560}
+  leftFlipY: 180
+  rightFlipY: 0
 --- !u!50 &3796358265002969867
 Rigidbody2D:
   serializedVersion: 4
@@ -5348,7 +5350,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1537940001
-  m_SortingLayer: 7
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -5631,7 +5633,7 @@ MonoBehaviour:
   EyePoint: {fileID: 4003009061756463023}
   ShootSaver:
     serializedVersion: 2
-    m_Bits: 133120
+    m_Bits: 1181696
   SharpShooterCrtl: {fileID: 3796358265002969864}
 --- !u!1 &9065946921609761483
 GameObject:

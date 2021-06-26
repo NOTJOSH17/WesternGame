@@ -69,7 +69,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1769941237
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 00cf5d9172db84c49a1fc7148700173d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -317,7 +317,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1537940001
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8f5b6b7748f924041b29e3ec072a6f9b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -502,7 +502,7 @@ MonoBehaviour:
   EyePoint: {fileID: 1329766031295840035}
   ShootSaver:
     serializedVersion: 2
-    m_Bits: 133120
+    m_Bits: 1181696
   banditControl: {fileID: 1249347690797716358}
 --- !u!1 &6352742965105232455
 GameObject:

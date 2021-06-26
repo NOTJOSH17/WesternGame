@@ -11,6 +11,7 @@ public class JumpDetector : MonoBehaviour
     public LayerMask nonJump;
     public LayerMask ladderMask;
     public bool ifGrounded;
+    public Animator HatAnim;
 
     // Start is called before the first frame update
     void Start()
@@ -24,15 +25,24 @@ public class JumpDetector : MonoBehaviour
         if(isGrounded())
         {
             playerController.canJump = true;
+            //HatAnim.Play("HatLand");
         }
         else
         {
             playerController.canJump = false;
+            //HatAnim.Play("HatJump");
         }
 
         if(isClimb())
         {
             playerController.canJump = false;
+            //HatAnim.SetBool("IsMoving", true);
+           //HatAnim.Play("HatIdle");
+            //HatAnim.enabled = false;
+        }
+        else
+        {
+            //HatAnim.enabled = true;
         }
     }
 

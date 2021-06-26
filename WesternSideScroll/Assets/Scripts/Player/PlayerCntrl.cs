@@ -37,6 +37,7 @@ public class PlayerCntrl : MonoBehaviour
     {
         rigi = GetComponent<Rigidbody2D>();
         bulletCount = maxBulletCount;
+
         maxBulletCount = 6;
         totalHealthText.text = "/" + totalHealth;
         gravity = this.rigi.gravityScale;
@@ -65,19 +66,19 @@ public class PlayerCntrl : MonoBehaviour
         if(isCrouching == false)
         {
             if(Input.GetButton("Horizontal"))
-                    {
-                        rigi.velocity = new Vector2((moveHorizontal * speed),rigi.velocity.y);
-                    }
+            {
+                rigi.velocity = new Vector2((moveHorizontal * speed),rigi.velocity.y);
+            }
 
-                    if(canJump == true) //player can jump
-                    {
-                        if(Input.GetButtonDown("Jump"))
-                        {    
-                            rigi.velocity = Vector2.up * jumpVelocity * 5;
-                        } 
-                    }
+                if(canJump == true) //player can jump
+                {
+                    if(Input.GetButtonDown("Jump"))
+                    {    
+                        rigi.velocity = Vector2.up * jumpVelocity * 5;
+                    } 
+                }
         }
-        
+
 
         if(Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -108,12 +109,16 @@ public class PlayerCntrl : MonoBehaviour
             
         }
 
-        
+        if(health <= totalHealth - 1)
+        {
+            
+        } 
 
 
         bulletText.text = "" + bulletCount; 
         healthText.text = "" + health;
 
+        //First gun
         if(bulletCount <= maxBulletCount - 1)// negative one so that it the player can reload at any number below the max amount of bullets
         {
             needReload = true;
@@ -131,7 +136,7 @@ public class PlayerCntrl : MonoBehaviour
         {
             canReload = false;
         }
-        
+
         
         if(Input.GetKeyDown(KeyCode.R))
         {

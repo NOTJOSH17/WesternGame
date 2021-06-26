@@ -19,7 +19,7 @@ public class SharpSeePlayer : MonoBehaviour
     void Update()
     {
         RotateTowards(player.transform.position);
-        RaycastHit2D hit = Physics2D.Raycast(EyePoint.position, transform.TransformDirection(Vector2.right), 6.5f);//, ~ShootSaver
+        RaycastHit2D hit = Physics2D.Raycast(EyePoint.position, transform.TransformDirection(Vector2.right), 6.5f, ~ShootSaver);//, 
         Debug.DrawRay(EyePoint.position, transform.TransformDirection(Vector2.right) * 6.5f, Color.red);
         
         if(hit.collider.tag == "Player")

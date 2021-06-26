@@ -18,6 +18,10 @@ public class SharpCntrl : MonoBehaviour
     public float timer;
     public float startTimer;
     public SharpGun arm;
+    public float leftFlipY;//for whem I change the rotation y of tall train cart
+    public float rightFlipY;//Same /\
+    public bool inRoom;
+    public GameObject Spawner;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +35,7 @@ public class SharpCntrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         //checks to see if enemy can shoot
         if(startShooting == true && canShoot == true)
         {
@@ -63,10 +68,19 @@ public class SharpCntrl : MonoBehaviour
 
     IEnumerator death()
     { 
-        yield return new WaitForSeconds(.01f);
+        if(!inRoom)
+        {
+            yield return new WaitForSeconds(.01f);
+            Destroy(gameObject);
+        }
+
+        if(inRoom)
+        {
+            yield return new WaitForSeconds(.01f);
+            Destroy(Spawner);
+            Destroy(gameObject);
+        }
         
-        
-        Destroy(gameObject);
     }
 
     //checks to see if its takes damage from collisions.
@@ -86,13 +100,13 @@ public class SharpCntrl : MonoBehaviour
 
     void FlipLeft()
     {
-        transform.localRotation = Quaternion.Euler(0, 180, 0);
+        transform.localRotation = Quaternion.Euler(0, leftFlipY, 0);
         arm.isRight = false;
     }
 
     void FlipRight()
     {
-        transform.localRotation = Quaternion.Euler(0, 0, 0);
+        transform.localRotation = Quaternion.Euler(0, rightFlipY, 0);
         arm.isRight = true;
     }
 

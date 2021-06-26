@@ -92,6 +92,7 @@ public class PlayerMove : MonoBehaviour
         if (other.collider.gameObject.layer == LayerMask.NameToLayer("Ammo"))//player go boom
         {
             playerController.bulletCount += 6;
+
             if(playerController.bulletCount >= playerController.maxBulletCount)
             {
                 playerController.bulletCount = playerController.maxBulletCount;
@@ -104,7 +105,7 @@ public class PlayerMove : MonoBehaviour
     void Flip()//the main flip script
     {
         facingRight = !facingRight;
-        gunTransform.Rotate(0f, 180f, 0f);
+        //gunTransform.Rotate(0f, 180f, 0f);
         transform.Rotate(0f, 180f, 0f);
     }
 
@@ -114,7 +115,7 @@ public class PlayerMove : MonoBehaviour
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
         Vector2 direction = new Vector2(mousePosition.x - PivotPoint.position.x, mousePosition.y - PivotPoint.position.y);
-        PivotPoint.up = direction;
+        //PivotPoint.up = direction;
     }
 
     void Shoot()//main shoot function

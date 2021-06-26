@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
-    bool facingRight = true;
+bool facingRight = true;
+    public GameObject gun;
     public Transform PivotPoint;
-    // Start is called before the first frame update
+    public GameObject Player;
+
     void Start()
     {
         
@@ -16,23 +18,37 @@ public class GunController : MonoBehaviour
     void Update()
     {
         
+        faceMouse();
 
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);//tracks the players mouse to see if its on the left or right of the player.
+
+        if(mousePos.x < Player.transform.position.x && facingRight)//flips the player right
+        {
+            Flip();
+        }
+        if(mousePos.x > Player.transform.position.x && !facingRight)//flips the player left
+        {
+            Flip();
+        }
         
     }
 
-    void Flip()
-    {
-        facingRight = !facingRight;
-        transform.Rotate(0f, 180f, 0f);
-    }
-
-    void faceMouse()
+    void faceMouse()//has player face mouse
     {
         Vector3 mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
         Vector2 direction = new Vector2(mousePosition.x - PivotPoint.position.x, mousePosition.y - PivotPoint.position.y);
-        PivotPoint.up = direction;  
+        PivotPoint.up = direction;
+    }
+
+
+
+
+    void Flip()//the main flip script
+    {
+        facingRight = !facingRight;
+        gun.transform.Rotate(0f, 180f, 0f);
     }
 
     

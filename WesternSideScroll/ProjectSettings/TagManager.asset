@@ -11,6 +11,7 @@ TagManager:
   - PickUp
   - BossSpawnPoint
   - SaveHolder
+  - Interior
   layers:
   - Default
   - TransparentFX
@@ -32,8 +33,8 @@ TagManager:
   - Ladder
   - Enemy
   - Boss
-  - 
-  - 
+  - Door
+  - Enemy Ignore
   - 
   - 
   - 
@@ -51,8 +52,14 @@ TagManager:
   - name: SkyBackground
     uniqueID: 2943968059
     locked: 0
+  - name: Ground
+    uniqueID: 2663679063
+    locked: 0
   - name: Clouds
     uniqueID: 229047471
+    locked: 0
+  - name: ObjectBack
+    uniqueID: 3105502399
     locked: 0
   - name: Ladder
     uniqueID: 2085127031
@@ -60,17 +67,29 @@ TagManager:
   - name: BackGround
     uniqueID: 437981319
     locked: 0
+  - name: Building
+    uniqueID: 2022108521
+    locked: 0
   - name: Objects
     uniqueID: 3094787137
     locked: 0
   - name: Tnt
     uniqueID: 3411248569
     locked: 0
+  - name: Doors
+    uniqueID: 3018033715
+    locked: 0
   - name: GunArm
     uniqueID: 2525026059
     locked: 0
   - name: Entities
     uniqueID: 1537940001
+    locked: 0
+  - name: Hat
+    uniqueID: 3611658901
+    locked: 0
+  - name: Gun Arm 2
+    uniqueID: 3392841671
     locked: 0
   - name: ForeGround
     uniqueID: 2407633565

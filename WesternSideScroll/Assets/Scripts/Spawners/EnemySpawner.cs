@@ -14,6 +14,9 @@ public class EnemySpawner : MonoBehaviour
     public float spawnCounter;
     public float enemyCount;
     public float maxEnemyCount;
+
+    public bool inRoom;
+    public GameObject Room;
     // Start is called before the first frame update
     void Start()
     {
@@ -67,8 +70,21 @@ public class EnemySpawner : MonoBehaviour
 
     void Spawn()
     {
-        spawnCounter = 1f;
-        enemyCount += 1;
-        Instantiate(Enemy, spawnPoint.position, spawnPoint.rotation);
+        
+        
+
+        if(inRoom)
+        {   
+            spawnCounter = 1f;
+            enemyCount += 1;
+            GameObject badGuy = Instantiate(Enemy, spawnPoint.position, spawnPoint.rotation);
+            badGuy.transform.parent = Room.transform;
+        }
+        else if (!inRoom)
+        {
+            spawnCounter = 1f;
+            enemyCount += 1;
+            Instantiate(Enemy, spawnPoint.position, spawnPoint.rotation);
+        }
     }
 }

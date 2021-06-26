@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class HealthCtrl : MonoBehaviour
 {
+
+public bool inRoom;
+public GameObject Interior;
+
+void Start() 
+{
+    
+}
+
 private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("Player"))
